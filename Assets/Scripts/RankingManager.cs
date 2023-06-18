@@ -41,8 +41,8 @@ public class RankingManager : MonoBehaviour
         //InsertarPuntos("Wizard", 25);
         //BorrarPuntos(3);
         //ObtenerRanking();
-        //BorrarPuntosExtra();
-        //MostrarRanking();
+        BorrarPuntosExtra();
+        MostrarRanking();
     }
 
     //Método para abrir la DB
@@ -94,6 +94,7 @@ public class RankingManager : MonoBehaviour
         dbCommand = dbConnection.CreateCommand();
         string sqlQuery = "SELECT * FROM score";
         dbCommand.CommandText = sqlQuery;
+
 
         // Leer la base de datos
         reader = dbCommand.ExecuteReader();

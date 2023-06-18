@@ -934,7 +934,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 1
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1449,27 +1449,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3771334740789076436, guid: b087267f09bbf054c97e2e667dc5758b, type: 3}
+      propertyPath: fade
+      value: 
+      objectReference: {fileID: 1350762817}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b087267f09bbf054c97e2e667dc5758b, type: 3}
---- !u!1 &3771334740789076435 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3771334740335936005, guid: b087267f09bbf054c97e2e667dc5758b, type: 3}
-  m_PrefabInstance: {fileID: 3771334740789076434}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3771334740789076436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3771334740789076435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92524feace9e2964e9a1e16033151517, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fade: {fileID: 1350762817}
 --- !u!1001 &6175357500550159368
 PrefabInstance:
   m_ObjectHideFlags: 0

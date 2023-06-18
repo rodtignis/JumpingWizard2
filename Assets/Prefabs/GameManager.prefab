@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8590992999677764939
+--- !u!1 &7084532331582546726
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8590992999677764941}
-  - component: {fileID: 8590992999677764938}
+  - component: {fileID: 7084532331582546725}
+  - component: {fileID: 7084532331582546724}
   m_Layer: 0
-  m_Name: RankingManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8590992999677764941
+--- !u!4 &7084532331582546725
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8590992999677764939}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 522.1337, y: -925.4997, z: -4.984221}
+  m_GameObject: {fileID: 7084532331582546726}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 622.97723, y: -974.0138, z: -5.165099}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8590992999677764938
+--- !u!114 &7084532331582546724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8590992999677764939}
+  m_GameObject: {fileID: 7084532331582546726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2636774b80cfb894bb28b8b829223163, type: 3}
+  m_Script: {fileID: 11500000, guid: c1962d41a37d02f48abf055179be43a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puntosPrefab: {fileID: 6683639931485357459, guid: d1559c7b2317f1e40a6616c10972ca56, type: 3}
-  puntosPadre: {fileID: 8158261999269365806, guid: 04bbcd81f69f9a841a45d36b2a3b4d6a, type: 3}
-  topRank: 10
-  limiteRanking: 15
+  puntos: 0
+  puntosTXT: {fileID: 0}
+  nombreTXT: {fileID: 0}
+  rankingGO: {fileID: 0}
