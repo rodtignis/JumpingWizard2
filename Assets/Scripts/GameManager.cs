@@ -3,29 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 //Librerías añadidas
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    private Transform playerTransform;
+    public int puntos;
+
     public Text puntosTXT;
     public Text nombreTXT;
-    public GameObject panelGO;
     public GameObject rankingGO;
-    int puntosDB;
 
-    public void GenerarPuntos()
+
+
+
+    private void Start()
     {
-        int puntos = Random.Range(0, 1500);
-        puntosDB = (int)puntos;
-        puntosTXT.text = puntos.ToString();
+
+        playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
-    public void ActivarPanel()
+    public void ResetGame()
     {
-        panelGO.SetActive(true);
+        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1f;
     }
 
     public void GuardarPuntosDB()
     {
-        rankingGO.GetComponent<RankingManager>().InsertarPuntos(nombreTXT.text, puntosDB);
+        rankingGO.GetComponent<RankingManager>().InsertarPuntos("Wizard", puntos);
     }
+
+
+
 }
