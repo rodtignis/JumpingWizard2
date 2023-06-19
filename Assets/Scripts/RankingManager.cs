@@ -6,15 +6,13 @@ using UnityEngine;
 using System.Data;
 using System.IO;
 using Mono.Data.Sqlite;
-using System.Globalization;
-
 
 public class RankingManager : MonoBehaviour
 {
     //Variable para controlar la ruta de la base de datos, constructor de la ruta, y el nombre de la base de datos
     string rutaDB;
     string strConexion;
-    string DBFileName = "baseDatos.db";
+    string DBFileName = "RankingDB.db";
 
     //Variable para trabajar con las conexiones
     IDbConnection dbConnection;
@@ -24,7 +22,7 @@ public class RankingManager : MonoBehaviour
     IDataReader reader;
 
     //Lista para el Ranking
-    private List<Ranking> score = new List<Ranking>();
+    private List<Ranking> rankings = new List<Ranking>();
 
     //Variables para almacenar el prefab y la posición del padre
     public GameObject puntosPrefab;
@@ -38,7 +36,7 @@ public class RankingManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //InsertarPuntos("Wizard", 25);
+        //InsertarPuntos("María", 25);
         //BorrarPuntos(3);
         //ObtenerRanking();
         BorrarPuntosExtra();
@@ -46,7 +44,7 @@ public class RankingManager : MonoBehaviour
     }
 
     //Método para abrir la DB
-    public void AbrirDB()
+    void AbrirDB()
     {
         // Crear y abrir la conexión
         // Comprobar en que plataforma estamos
@@ -84,30 +82,29 @@ public class RankingManager : MonoBehaviour
     }
 
     //Método para obtener el Ranking de la DB
-    public void ObtenerRanking()
+    void ObtenerRanking()
     {
         //Primero dejamos la lista de Rankings limpia
-        score.Clear();
+        rankings.Clear();
         //Abrimos la DB
         AbrirDB();
         // Crear la consulta
         dbCommand = dbConnection.CreateCommand();
-        string sqlQuery = "SELECT * FROM score";
+        string sqlQuery = "SELECT * FROM ranking";
         dbCommand.CommandText = sqlQuery;
-
 
         // Leer la base de datos
         reader = dbCommand.ExecuteReader();
         while (reader.Read())
         {
-            score.Add(new Ranking(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetDateTime(3)));
+            rankings.Add(new Ranking(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetDateTime(3)));
         }
         reader.Close();
         reader = null;
         //Cerramos la DB
         CerrarDB();
         //Ordenamos la lista
-        score.Sort();
+        rankings.Sort();
     }
 
     //Método para insertar puntos en la DB
@@ -117,7 +114,7 @@ public class RankingManager : MonoBehaviour
         AbrirDB();
         // Crear la consulta
         dbCommand = dbConnection.CreateCommand();
-        string sqlQuery = String.Format("INSERT INTO score(Name, Score) values(\"{0}\",\"{1}\")", n, s);
+        string sqlQuery = String.Format("INSERT INTO ranking(Name, Score) values(\"{0}\",\"{1}\")", n, s);
         dbCommand.CommandText = sqlQuery;
         dbCommand.ExecuteScalar();
         //Cerramos la DB
@@ -131,7 +128,7 @@ public class RankingManager : MonoBehaviour
         AbrirDB();
         // Crear la consulta
         dbCommand = dbConnection.CreateCommand();
-        string sqlQuery = "DELETE FROM score WHERE PlayerId = \"" + id + "\"";
+        string sqlQuery = "DELETE FROM Ranking WHERE PlayerId = \"" + id + "\"";
         dbCommand.CommandText = sqlQuery;
         dbCommand.ExecuteScalar();
         //Cerramos la DB
@@ -139,7 +136,7 @@ public class RankingManager : MonoBehaviour
     }
 
     //Método para mostrar el ranking en la UI
-    public void MostrarRanking()
+    void MostrarRanking()
     {
         //Obtener el ranking de la DB
         ObtenerRanking();
@@ -147,35 +144,38 @@ public class RankingManager : MonoBehaviour
         for (int i = 0; i < topRank; i++)
         {
             //Si siguen habiendo elementos en la lista
-            if (i < score.Count)
+            if (i < rankings.Count)
             {
                 //Instanciamos el objeto Puntaje
                 GameObject tempPrefab = Instantiate(puntosPrefab);
                 //Hacemos este objeto hijo de Puntos
-                tempPrefab.transform.SetParent(puntosPadre);
+                tempPrefab.transform.SetParent(puntosPadre, false);
                 //Le ponemos la escala para que se adapte a la resolución actual de la UI
                 tempPrefab.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
                 //Posición en la lista
-                Ranking rankTemp = score[i];
+                Ranking rankTemp = rankings[i];
                 //Llamamos al método que pone los puntos
                 tempPrefab.GetComponent<RankingScript>().PonerPuntos("#" + (i + 1).ToString(),
                                                         rankTemp.Name, rankTemp.Score.ToString());
+
+                tempPrefab.SetActive(true); 
+
             }
         }
     }
 
     //Método para borrar los puntos extra
-    public void BorrarPuntosExtra()
+    void BorrarPuntosExtra()
     {
         //Obtener el Ranking
         ObtenerRanking();
         //Comprobar que el ranking sea mas grande que el limite
-        if (limiteRanking <= score.Count)
+        if (limiteRanking <= rankings.Count)
         {
             //Le damos la vuelta a la lista para borrar las menores puntuaciones
-            score.Reverse();
+            rankings.Reverse();
             //obtenemos la diferencia entre el ranking y el limite, para ver cuantos registros nos sobran
-            int diferencia = score.Count - limiteRanking;
+            int diferencia = rankings.Count - limiteRanking;
             //Abrimos DB
             AbrirDB();
             //Creo Comando
@@ -184,7 +184,7 @@ public class RankingManager : MonoBehaviour
             for (int i = 0; i < diferencia; i++)
             {
                 //Borrar por ID en la posicion del ranking
-                string sqlQuery = "DELETE FROM score WHERE PlayerId = \"" + score[i].Id + "\"";
+                string sqlQuery = "DELETE FROM Ranking WHERE PlayerId = \"" + rankings[i].Id + "\"";
                 dbCommand.CommandText = sqlQuery;
                 dbCommand.ExecuteScalar();
             }
@@ -195,7 +195,7 @@ public class RankingManager : MonoBehaviour
     }
 
     //Método para cerrar la DB
-    public void CerrarDB()
+    void CerrarDB()
     {
         // Cerrar las conexiones
         dbCommand.Dispose();
