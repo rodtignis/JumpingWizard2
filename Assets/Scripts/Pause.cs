@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Pause : MonoBehaviour
 {
     public Button pauseButton;
+    public Button exitMenu;
     private bool isPaused = false;
     public GameObject pauseMenu;
     public Image screenOverlay;
@@ -17,6 +19,8 @@ public class Pause : MonoBehaviour
     private void Start()
     {
         pauseButton.onClick.AddListener(TogglePause);
+        exitMenu.onClick.AddListener(OpenMenu);
+
     }
 
     private void TogglePause()
@@ -53,7 +57,10 @@ public class Pause : MonoBehaviour
     }
 
 
-
+    public void OpenMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 
 
 

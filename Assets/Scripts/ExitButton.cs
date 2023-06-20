@@ -12,17 +12,17 @@ public class ExitButton : MonoBehaviour
     public Button backToGame;
     void Start()
     {
-        exitMenu.onClick.AddListener(OpenMenu);
-        backToGame.onClick.AddListener(OpenGame);
+        exitMenu.onClick.AddListener(BackToMenu);
+        backToGame.onClick.AddListener(BackToGame);
 
     }
 
-    public void OpenMenu()
+    public void BackToMenu()
     {
         SceneManager.LoadScene("Menu");
     }
 
-    public void OpenGame()
+    public void BackToGame()
     {
         SceneManager.LoadScene("SampleScene");
     }

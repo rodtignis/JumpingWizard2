@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7084532331582546725}
   - component: {fileID: 7084532331582546724}
+  - component: {fileID: 4014429741930734129}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,3 +49,15 @@ MonoBehaviour:
   puntosTXT: {fileID: 0}
   nombreTXT: {fileID: 0}
   rankingGO: {fileID: 0}
+--- !u!114 &4014429741930734129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7084532331582546726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540e67c5747c5564d9a0bda211f61e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

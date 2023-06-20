@@ -5,23 +5,39 @@ using UnityEngine;
 public class enemy : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public float spawnDelay = 2f;
+    public GameObject[] enemies;
+    public int numberOfEnemies = 100;
+    public float levelWidth = 3f;
+    public float levelHeight = 5f;
 
-    private float timeToSpawn = 0f;
+    public float minY = .2f;
+    public float maxY = 1.5f;
+    public float enemySpawnChance = 0.1f;
 
-    private void Update()
+    void Start()
     {
-        if (Time.time >= timeToSpawn)
+        Vector3 spawnPosition = new Vector3();
+
+        for (int i = 0; i < numberOfEnemies; i++)
         {
-            SpawnEnemy();
-            timeToSpawn = Time.time + spawnDelay;
+            float spawnChance = Random.Range(0f, 1f);
+            if (spawnChance <= enemySpawnChance)
+            {
+                spawnPosition.y += Random.Range(minY, maxY);
+                spawnPosition.x = Random.Range(-levelWidth, levelWidth);
+                int aleatorio = Random.Range(0, 2);
+                GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+                enemyObject.tag = "Enemy"; // ѕрисваиваем тег "Enemy" дл€ каждого созданного врага 
+
+            }
+        }
+
+        GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemyObject in activeEnemies)
+        {
+            enemyObject.SetActive(true);
         }
     }
 
-    private void SpawnEnemy()
-    {
-        float xPos = Random.Range(-4f, 4f);
-        Vector2 spawnPos = new Vector2(xPos, transform.position.y);
-        Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-    }
+
 }
