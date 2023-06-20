@@ -4,6 +4,8 @@ using UnityEngine;
 //Librerías añadidas
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.IO;
+
 
 
 public class GameManager : MonoBehaviour
@@ -11,18 +13,16 @@ public class GameManager : MonoBehaviour
     private Transform playerTransform;
     public int puntos;
 
-    public Text puntosTXT;
     public Text nombreTXT;
     public GameObject rankingGO;
 
-
     private JSONSaveLoad saveLoadScript;
-
+    public string playerSceneName = "SimpleScene";
+    public string playerObjectName = "wiz";
 
     private void Start()
     {
-
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        playerTransform = GetPlayerTransformFromScene(playerSceneName, playerObjectName);
         saveLoadScript = GetComponent<JSONSaveLoad>();
 
         if (saveLoadScript != null)
@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("JSONSaveLoad component is missing.");
         }
-
     }
 
     public void ResetGame()
@@ -49,45 +48,115 @@ public class GameManager : MonoBehaviour
 
     public void ExitButtonClicked()
     {
-        // Дополнительные действия по завершению игры, например, переключение на сцену главного меню
         SceneManager.LoadScene("MainMenu");
     }
 
     public void ContinueButtonClicked()
     {
         LoadGameData();
-        ResumeGame();
         SceneManager.LoadScene("SampleScene");
+        ResumeGame();
     }
 
     public void SaveGameData()
     {
-        Vector3 playerPosition = playerTransform.position;
-        saveLoadScript.SaveData(new GameData(puntos, playerPosition));
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            Transform playerTransform = playerObject.transform;
+            Vector3 playerPosition = playerTransform.position;
+            saveLoadScript.SaveData(new GameData(puntos, playerPosition));
+        }
+        else
+        {
+            Debug.LogWarning("Player object with tag 'Player' not found. Unable to save game data.");
+        }
     }
 
-    private void LoadGameData()
+    private GameData LoadGameData()
     {
         GameData gameData = saveLoadScript.LoadData();
         if (gameData != null)
         {
             puntos = gameData.puntos;
-            nombreTXT.text = puntos.ToString();
-            playerTransform.position = gameData.playerPosition;
 
+            if (PlayerPrefs.HasKey("NombreValue"))
+            {
+                string nombreValue = PlayerPrefs.GetString("NombreValue");
+                GameObject[] nombreTextObjects = GameObject.FindGameObjectsWithTag("NombreText");
+                if (nombreTextObjects.Length > 0)
+                {
+                    Text nombreText = nombreTextObjects[0].GetComponent<Text>();
+                    nombreText.text = nombreValue;
+                }
+
+                return gameData; // Возвращаем объект GameData
+            }
+
+            // Загрузка сцены с игроком, если она не загружена
+            if (!SceneManager.GetSceneByName(playerSceneName).isLoaded)
+            {
+                SceneManager.LoadScene(playerSceneName, LoadSceneMode.Additive);
+            }
+
+            // Поиск игрового объекта игрока в нужной сцене
+            Scene playerScene = SceneManager.GetSceneByName(playerSceneName);
+            if (playerScene.IsValid())
+            {
+                GameObject[] players = playerScene.GetRootGameObjects();
+                foreach (GameObject player in players)
+                {
+                    if (player.CompareTag("Player"))
+                    {
+                        playerTransform = player.transform;
+                        playerTransform.position = gameData.playerPosition;
+                        break;
+                    }
+                }
+
+                if (playerTransform == null)
+                {
+                    Debug.LogWarning("Player object not found in the scene. Unable to set player position from game data.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Player scene is not valid. Unable to load player object.");
+            }
+
+            return gameData;
+        }
+        else
+        {
+            Debug.LogWarning("No saved game data found.");
+            return null; // Возвращаем null, если данные сохранения отсутствуют
         }
     }
 
     private void ResumeGame()
     {
         Time.timeScale = 1f;
-        // Дополнительные действия при продолжении игры
+    }
+
+    private Transform GetPlayerTransformFromScene(string sceneName, string objectName)
+    {
+        Scene scene = SceneManager.GetSceneByName(sceneName);
+        if (scene.IsValid())
+        {
+            GameObject[] rootObjects = scene.GetRootGameObjects();
+            foreach (GameObject rootObject in rootObjects)
+            {
+                Transform playerTransform = rootObject.transform.Find(objectName);
+                if (playerTransform != null)
+                    return playerTransform;
+            }
+        }
+        return null;
     }
 }
 
-
 [System.Serializable]
-public class GameData 
+public class GameData
 {
     public int puntos;
     public Vector3 playerPosition;
@@ -98,4 +167,3 @@ public class GameData
         this.playerPosition = playerPosition;
     }
 }
-
