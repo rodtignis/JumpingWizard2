@@ -17,11 +17,6 @@ public class GameManager : MonoBehaviour
 
     private string saveFilePath;
 
-    private void Awake()
-    {
-        saveFilePath = Path.Combine(Application.persistentDataPath, "save.json");
-    }
-
     public Text nombreTXT;
     public GameObject rankingGO;
     public Transform playerTransform;
@@ -94,16 +89,21 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void LoadGameButton()
+    {
+        SceneManager.LoadSceneAsync("SampleScene");
+        LoadGameData();
+    }
+
+
     public void LoadGameData()
     {
+        saveFilePath = Path.Combine(Application.persistentDataPath, saveFileName);
         if (File.Exists(saveFilePath))
-        {
-
-            if (File.Exists(saveFilePath = Path.Combine(Application.persistentDataPath, saveFileName)))
             {
-                string jsonData = File.ReadAllText(saveFilePath = Path.Combine(Application.persistentDataPath, saveFileName));
+            string jsonData = File.ReadAllText(saveFilePath);
 
-                GameData gameData = JsonUtility.FromJson<GameData>(jsonData);
+            GameData gameData = JsonUtility.FromJson<GameData>(jsonData);
 
                 Vector3 position = gameData.playerPosition;
                 int puntos = gameData.puntos;
@@ -141,10 +141,7 @@ public class GameManager : MonoBehaviour
             }
 
 
-        }         
-
-        SceneManager.LoadSceneAsync("SampleScene");
-
+             
 
         ResumeGame();
 

@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
 	public RankingManager referencia; 
 
-
+	[SerializeField]
 
 	Rigidbody2D wiz;
 
