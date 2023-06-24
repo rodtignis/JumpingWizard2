@@ -9,18 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 880f83190ace560489e4e1304d41ba30
   - enabled: 1
-    path: Assets/Scenes/SettingsScene.unity
-    guid: d9adb2ee26aebc849a32e018561c9048
-  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 6e22dc048053a84489b992b701d086b6
   - enabled: 1
-    path: Assets/Scenes/Score.unity
-    guid: 17498f1673c3add4e996998a3b5659da
-  - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: adb56fb0b87af5a44864510f60aefa1b
-  - enabled: 1
-    path: Assets/Scenes/MusicBase.unity
-    guid: 38eb7d33c4d1bb540b57fbc60c0fbf4a
   m_configObjects: {}
