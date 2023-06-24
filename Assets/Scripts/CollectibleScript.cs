@@ -5,23 +5,23 @@ using UnityEngine;
 public class CollectibleScript : MonoBehaviour
 {
     public GameManager scoreRef;
-    private AudioSource soundManager;
+    //private AudioSource soundManager;
 
-    public AudioClip sound2;
+    //public AudioClip sound2;
 
 
     void Start()
     {
-        soundManager = GameObject.Find("SoundManager").GetComponent<AudioSource>();
+        //soundManager = GameObject.Find("SoundManager").GetComponent<AudioSource>();
 
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Collectible"))
-        {
-            PlaySoundOnCollision(sound2);
-        }
+        //if (collision.gameObject.CompareTag("Collectible"))
+        //{
+        //    PlaySoundOnCollision(sound2);
+        //}
 
         if (collision.CompareTag("Player"))
         {
@@ -46,12 +46,12 @@ public class CollectibleScript : MonoBehaviour
 
 
 
-    private void PlaySoundOnCollision(AudioClip sound)
-    {
-        // Воспроизводим звук
-        soundManager.clip = sound; // Устанавливаем выбранный звуковой файл в компонент AudioSource
-        soundManager.Play();
-    }
+    //private void PlaySoundOnCollision(AudioClip sound)
+    //{
+    //    // Воспроизводим звук
+    //    soundManager.clip = sound; // Устанавливаем выбранный звуковой файл в компонент AudioSource
+    //    soundManager.Play();
+    //}
 
 
 }

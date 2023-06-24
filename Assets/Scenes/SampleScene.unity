@@ -512,26 +512,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4796186276964707391, guid: 3e12ea7c3ca5f9545a1c2afcbf03285e, type: 3}
   m_PrefabInstance: {fileID: 652552804626566453}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &420718841
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420718840}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 43f08d0a0ad9e05469b49836556fea28, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &464760146 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7084532331582546725, guid: 563a3391a601a4f41beec41a61434f21, type: 3}
@@ -1146,7 +1126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170345514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -831.21, y: -1717.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1682,26 +1662,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7810612204485401388, guid: d6395c532cbcbbf448f8eb4a2d0e33d2, type: 3}
   m_PrefabInstance: {fileID: 8728973954378079862}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1814929306
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814929305}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fbcb9aca38216fe49bac1f10fde858a7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1826992277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2166,10 +2126,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: collectable
       objectReference: {fileID: 0}
-    - target: {fileID: 4817965720656468165, guid: 3e12ea7c3ca5f9545a1c2afcbf03285e, type: 3}
-      propertyPath: sound2
-      value: 
-      objectReference: {fileID: 8300000, guid: f396a5a34e27f4a43b4f2cb43bc9e3dd, type: 3}
     - target: {fileID: 4817965720656468165, guid: 3e12ea7c3ca5f9545a1c2afcbf03285e, type: 3}
       propertyPath: scoreRef
       value: 
@@ -3164,7 +3120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4663207259555495838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4192,14 +4148,6 @@ PrefabInstance:
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 1054183648}
-    - target: {fileID: 8084954550924148353, guid: b552cbddf8862dc42801107ecff5bc9a, type: 3}
-      propertyPath: sound1
-      value: 
-      objectReference: {fileID: 8300000, guid: 08f7164d74900a14d9f6b12517c1f40d, type: 3}
-    - target: {fileID: 8084954550924148353, guid: b552cbddf8862dc42801107ecff5bc9a, type: 3}
-      propertyPath: sound2
-      value: 
-      objectReference: {fileID: 8300000, guid: f396a5a34e27f4a43b4f2cb43bc9e3dd, type: 3}
     - target: {fileID: 8084954550924148353, guid: b552cbddf8862dc42801107ecff5bc9a, type: 3}
       propertyPath: mainCamera
       value: 

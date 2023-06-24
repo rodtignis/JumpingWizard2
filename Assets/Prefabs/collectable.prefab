@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7633206472855565710}
   - component: {fileID: 4817965720656468165}
   - component: {fileID: 420718843}
+  - component: {fileID: 420718841}
   m_Layer: 0
   m_Name: collectable
   m_TagString: Collectible
@@ -99,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreRef: {fileID: 0}
+  sound2: {fileID: 8300000, guid: f396a5a34e27f4a43b4f2cb43bc9e3dd, type: 3}
 --- !u!58 &420718843
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,3 +117,23 @@ CircleCollider2D:
   m_Offset: {x: 0.014844053, y: -0.06403832}
   serializedVersion: 2
   m_Radius: 0.17563261
+--- !u!95 &420718841
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796186276964707391}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43f08d0a0ad9e05469b49836556fea28, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

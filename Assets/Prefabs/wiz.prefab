@@ -152,6 +152,8 @@ MonoBehaviour:
   fallSpeed: 10
   gameManager: {fileID: 0}
   mainCamera: {fileID: 0}
+  sound1: {fileID: 8300000, guid: 08f7164d74900a14d9f6b12517c1f40d, type: 3}
+  sound2: {fileID: 8300000, guid: f396a5a34e27f4a43b4f2cb43bc9e3dd, type: 3}
   referencia: {fileID: 0}
   wiz: {fileID: 8084954550924148354}
 --- !u!95 &725678014120577887

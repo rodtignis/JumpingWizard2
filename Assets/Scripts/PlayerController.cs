@@ -97,7 +97,8 @@ public class PlayerController : MonoBehaviour
 		{
 			PlaySoundOnCollision(sound1);
 		}
-		else if (collision.gameObject.CompareTag("Collectible"))
+		
+		if (collision.gameObject.CompareTag("Collectible"))
 		{
 			PlaySoundOnCollision(sound2);
 		}
