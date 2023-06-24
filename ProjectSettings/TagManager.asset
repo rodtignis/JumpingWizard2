@@ -7,11 +7,12 @@ TagManager:
   - Platform
   - Enemy
   - Collectible
+  - NombreText
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - platformLayer
   - Water
   - UI
   - 

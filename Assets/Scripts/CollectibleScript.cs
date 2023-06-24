@@ -5,9 +5,24 @@ using UnityEngine;
 public class CollectibleScript : MonoBehaviour
 {
     public GameManager scoreRef;
+    private AudioSource soundManager;
 
+    public AudioClip sound2;
+
+
+    void Start()
+    {
+        soundManager = GameObject.Find("SoundManager").GetComponent<AudioSource>();
+
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("Collectible"))
+        {
+            PlaySoundOnCollision(sound2);
+        }
+
         if (collision.CompareTag("Player"))
         {
             // Обработка столкновения с игроком
@@ -26,6 +41,16 @@ public class CollectibleScript : MonoBehaviour
         gameObject.SetActive(false); // Отключаем отображение объекта
         // или
         // Destroy(gameObject); // Уничтожаем объект
+    }
+
+
+
+
+    private void PlaySoundOnCollision(AudioClip sound)
+    {
+        // Воспроизводим звук
+        soundManager.clip = sound; // Устанавливаем выбранный звуковой файл в компонент AudioSource
+        soundManager.Play();
     }
 
 

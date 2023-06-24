@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadGameButton()
     {
-        SceneManager.LoadSceneAsync("SampleScene");
+        SceneManager.LoadScene("SampleScene");
         LoadGameData();
     }
 
@@ -105,20 +105,20 @@ public class GameManager : MonoBehaviour
 
             GameData gameData = JsonUtility.FromJson<GameData>(jsonData);
 
-                Vector3 position = gameData.playerPosition;
+                Vector3 playerPosition = gameData.playerPosition;
                 int puntos = gameData.puntos;
 
-                GameData.Instance.playerPosition = position;
+                GameData.Instance.playerPosition = playerPosition;
                 GameData.Instance.puntos = puntos;
 
-                Debug.Log("Game loaded! Score: " + puntos + ", Position: " + position);
+                Debug.Log("Game loaded! Score: " + puntos + ", Position: " + playerPosition);
 
                 GameObject playerObject = GameObject.FindWithTag("Player");
                 GameObject puntosObject = GameObject.FindWithTag("NombreText");
 
                 if (playerObject != null)
                 {
-                    playerObject.transform.position = position;
+                    playerObject.transform.position = playerPosition;
                 }
                 else
                 {
@@ -189,74 +189,3 @@ public class GameData
 
     private GameData() { }
 }
-
-//public class HellManage : MonoBehaviour
-//{
-//    private Transform playerTransform;
-//    public int puntos;
-
-//    public string gameSceneName = "Samplecene";
-//    public string saveFileName = "save.json";
-
-//    private string saveFilePath;
-
-//    private void Awake()
-//    {
-//        saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.json");
-//    }
-
-//    private JSONSaveLoad saveLoadScript;
-//    public string playerSceneName = "SampleScene";
-//    public string playerObjectName = "wiz";
-
-
-
-//    private void Start()
-//    {
-//        saveFilePath = Path.Combine(Application.persistentDataPath, saveFileName);
-//        saveLoadScript = GetComponent<JSONSaveLoad>();
-
-//        if (saveLoadScript != null)
-//        {
-//            Debug.Log("JSONSaveLoad component found.");
-//        }
-//        else
-//        {
-//            Debug.LogError("JSONSaveLoad component is missing.");
-//        }
-//    }
-
-//    public void SaveGameData()
-//    {
-//        GameObject playerObject = GameObject.FindWithTag("Player");
-//        if (playerObject != null)
-//        {
-//            Transform playerTransform = playerObject.transform;
-//            Vector3 playerPosition = playerTransform.position;
-
-//            Debug.Log("Saving player position: " + playerPosition);
-//            Debug.Log("Saving player score: " + puntos);
-
-
-//            saveLoadScript.SaveData(new GameData(puntos, playerPosition));
-//        }
-//        else
-//        {
-//            Debug.LogWarning("Player object with tag 'Player' not found. Unable to save game data.");
-//        }
-//    }
-
-//}
-
-//[System.Serializable]
-//public class GameData
-//{
-//    public int puntos;
-//    public Vector3 playerPosition;
-
-//    public GameData(int puntos, Vector3 playerPosition)
-//    {
-//        this.puntos = 0;
-//        this.playerPosition = playerPosition;
-//    }
-//}

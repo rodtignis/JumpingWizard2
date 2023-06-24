@@ -15,9 +15,13 @@ public class PlayerController : MonoBehaviour
 	public GameManager gameManager;
 	public Camera mainCamera;
 	private float characterHeight;
+	public AudioClip sound1; 
+	public AudioClip sound2;
 
+	public RankingManager referencia;
 
-	public RankingManager referencia; 
+	private AudioSource soundManager;
+
 
 	[SerializeField]
 
@@ -30,6 +34,9 @@ public class PlayerController : MonoBehaviour
 		wiz = GetComponent<Rigidbody2D>();
 		gameManager = FindObjectOfType<GameManager>();
 		characterHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+
+		soundManager = GameObject.Find("SoundManager").GetComponent<AudioSource>();
+
 
 	}
 
@@ -44,18 +51,18 @@ public class PlayerController : MonoBehaviour
 		float cameraBottom = mainCamera.transform.position.y - mainCamera.orthographicSize;
 
 
-		if (wiz.transform.position.x > 2.22f)
+		if (wiz.transform.position.x > 4.37f)
 		{
 
-			wiz.transform.position = new Vector3(-2.22f, wiz.transform.position.y, wiz.transform.position.z);
+			wiz.transform.position = new Vector3(-3f, wiz.transform.position.y, wiz.transform.position.z);
 		
 		}
 
 
-		if (wiz.transform.position.x < -2.22f)
+		if (wiz.transform.position.x < -3f)
 		{
 
-			wiz.transform.position = new Vector3(2.22f, wiz.transform.position.y, wiz.transform.position.z);
+			wiz.transform.position = new Vector3(4.37f, wiz.transform.position.y, wiz.transform.position.z);
 		
 		}
 
@@ -70,13 +77,31 @@ public class PlayerController : MonoBehaviour
 	}
 
 
+
+	private void PlaySoundOnCollision(AudioClip sound)
+	{
+		soundManager.clip = sound; 
+		soundManager.Play();
+	}
+
+
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag("Enemy"))
 		{
-			// Обработка столкновения с врагом
 			Die();
 		}
+
+
+		if (collision.gameObject.CompareTag("Platform"))
+		{
+			PlaySoundOnCollision(sound1);
+		}
+		else if (collision.gameObject.CompareTag("Collectible"))
+		{
+			PlaySoundOnCollision(sound2);
+		}
+
 	}
 
 	private void Die()

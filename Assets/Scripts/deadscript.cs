@@ -16,7 +16,6 @@ public class deadscript : MonoBehaviour
     void Start()
     {
         restart.onClick.AddListener(ResetGame);
-        showScore.onClick.AddListener(Scoretable);
         exitMenu.onClick.AddListener(OpenMenu);
         exitGame.onClick.AddListener(ExitGame);
     }
@@ -34,11 +33,6 @@ public class deadscript : MonoBehaviour
 
    
     
-    public void Scoretable()
-    {
-        SceneManager.LoadScene("Score");
-        Time.timeScale = 1f;
-    }
     public void OpenMenu()
     {
         SceneManager.LoadScene("Menu");

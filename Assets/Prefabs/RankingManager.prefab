@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   puntosPrefab: {fileID: 6683639931485357459, guid: d1559c7b2317f1e40a6616c10972ca56, type: 3}
   puntosPadre: {fileID: 8158261999269365806, guid: 04bbcd81f69f9a841a45d36b2a3b4d6a, type: 3}
-  topRank: 10
-  limiteRanking: 15
+  topRank: 15
+  limiteRanking: 25
