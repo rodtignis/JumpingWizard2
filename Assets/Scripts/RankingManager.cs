@@ -13,6 +13,7 @@ public class RankingManager : MonoBehaviour
     string rutaDB;
     string strConexion;
     string DBFileName = "RankingDB.db";
+    string databasePath = Path.Combine(Application.streamingAssetsPath, "RankingDB.db");
 
     //Variable para trabajar con las conexiones
     IDbConnection dbConnection;
